@@ -1,34 +1,35 @@
-require("@nomicfoundation/hardhat-toolbox");
+require('@nomiclabs/hardhat-waffle');
 
-/** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  solidity: "0.8.19",
-  settings: {
-    optimizer: {
-      enabled: true,
-      runs: 200
-    }
+  solidity: {
+    version: '0.7.6', 
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 5000,
+      },
     },
+  },
+  networks: {
+    
+    hardhat: {
+      forking: {
+        url: "https://eth-mainnet.g.alchemy.com/v2/9iAmNcUrXGEWP3e8BLjat6ff3RYkuKck",
+        accounts: [
+
+        ],
+      }, 
+
+    },
+  },
+  
   paths: {
-     sources: "./contracts",
-     tests: "./test",
-     cache: "./cache",
-     artifacts: "./artifacts"
-    },
-    mocha: {
-      timeout: 40000
-    },
-
-  nextwork: {
-    localhost: {
-      url: "http://127.0.0.1:8545",
-      gas: 6000000,
-    },
-    // hardhat: {
-    //   forking: {
-    //     url: "https://eth-mainnet.g.alchemy.com/v2/3SAmNcUrXGEWP3e8BLjat6ff3RYkuKck"
-    //   } 
-
-    // }
-  }
+    sources: './contracts', // Directory containing your Solidity contracts
+    tests: './test', // Directory containing your tests
+    cache: './cache', // Directory for Hardhat's cache
+    artifacts: './artifacts', // Directory for contract artifacts
+  },
+  mocha: {
+    timeout: 20000, // Increase the timeout for tests (in milliseconds)
+  },
 };
